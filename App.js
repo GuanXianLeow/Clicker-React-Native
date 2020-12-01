@@ -1,29 +1,45 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity,button } from 'react-native';
 
 export default function App() {
 
 const [count,setCount] = useState(0);
+const onPress = () => setCount(prevCount => prevCount + 1);
 
 function increment() {
   setCount(count + 1);
 }
 
-  return (
-    <View style={styles.container}>
-      <Text>{count}</Text><br/>
-     <Button title="Press me!" onPress={increment}></Button>
-      <StatusBar style="auto" />
+return (
+  <View style={styles.container}>
+    <View style={styles.countContainer}>
+      <Text>Count: {count}</Text>
     </View>
-  );
-}
+    <TouchableOpacity
+      style={styles.button}
+      onPress={onPress}
+    >
+      <Text>Press Here</Text>
+    </TouchableOpacity>
+  </View>
+);
+};
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    justifyContent: "center",
     alignItems: 'center',
-    justifyContent: 'center',
   },
+  button: {
+    alignItems: "center",
+    backgroundColor: "#bd177a",
+    borderRadius: 5,
+  },
+  countContainer: {
+    alignItems: "center",
+    padding: 10
+  }
 });
